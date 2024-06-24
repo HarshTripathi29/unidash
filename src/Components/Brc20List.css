@@ -1,0 +1,22 @@
+.brc20-list {
+    padding: 20px;
+  }
+  
+  .brc20-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+  }
+  
+  .brc20-table th, .brc20-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .brc20-table th {
+    background-color: #121212;
+    color: white;
+    border : none;
+  }
+  

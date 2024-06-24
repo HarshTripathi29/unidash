@@ -1,90 +1,116 @@
 .watchlist-table-container {
-    width: calc(100% - 40px);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin: 5px 20px;
-    padding: 10px 20px;
-    overflow-x: hidden;
+  width: calc(100% - 40px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 5px 10px;
+  padding: 10px;
+}
+
+.watchlist-table {
+  width: 100%;
+  padding: 0;
+  border-collapse: collapse;
+  border-bottom: 1px solid black;
+  min-width: auto; /* Remove fixed minimum width */
+  overflow-x: auto;
+}
+
+.watchlist-table thead, .watchlist-table tbody {
+  display: block;
+  width: 100%;
+}
+
+.watchlist-table tbody {
+  height: 470px;
+  overflow-y: scroll;
+  scrollbar-width: none;
+}
+
+.watchlist-table tbody::-webkit-scrollbar {
+  display: none;
+}
+
+.watchlist-table thead, .watchlist-table tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+.watchlist-table th, .watchlist-table td {
+  padding: 8px 5px;  /* Adjusted padding for smaller screens */
+  text-align: left;
+  color: rgb(9, 9, 9);
+  white-space: nowrap;
+  overflow: hidden;
+  border: 1px solid #121212;
+  text-overflow: ellipsis;
+}
+
+.watchlist-table th {
+  background-color: #000000;
+  color: white;
+}
+
+.watchlist-table tr {
+  background-color: rgba(255, 255, 255, 0.813);
+}
+
+.watchlist-table tr:hover {
+  background-color: rgba(203, 203, 203, 0.799);
+}
+
+.alert-container {
+  display: flex;
+  align-items: center;
+}
+
+.alert-input {
+  width: 70px; /* Adjusted width */
+  border: 1px solid #121212;
+  padding: 4px;
+  margin-right: 5px;
+}
+
+.alert-button {
+  background-color: #121212;
+  color: white;
+  border: none;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.symbol-image {
+  width: 40px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Media Queries for Responsive Design */
+@media (max-width: 768px) {
+  .watchlist-table-container {
+      margin: 10px;
+      padding: 10px;
+      overflow-x: auto;
+      display: flex;
+      align-items: flex-start;
   }
-  
   .watchlist-table {
-    width: 100%;
-    padding: 0;
-    border-collapse: collapse;
-    border-bottom: 1px solid black;
-    min-width: 600px;
-  }
-  
-  .watchlist-table thead, .watchlist-table tbody {
-    display: block;
-    width: 100%;
-  }
-  
+    min-width: 800px; /* Ensure horizontal scroll on smaller screens */
+
+}
   .watchlist-table tbody {
-    height: 470px;
-    overflow-y: scroll;
-    scrollbar-width: none;
+      height: auto;
+      max-height: 300px; /* Example of max-height for tbody on smaller screens */
+      overflow-y: scroll;
   }
-  
-  .watchlist-table tbody::-webkit-scrollbar {
-    display: none;
-  }
-  
-  .watchlist-table thead, .watchlist-table tbody tr {
-    display: table;
-    width: 100%;
-    table-layout: fixed;
-  }
-  
   .watchlist-table th, .watchlist-table td {
-    padding: 8px 10px;  /* Adjusted padding */
-    text-align: left;
-    color: rgb(9, 9, 9);
-    white-space: nowrap;
-    overflow: hidden;
-    border: 1px solid #121212;
-    text-overflow: ellipsis;
-  }
-  
-  .watchlist-table th {
-    background-color: #000000;
-    color: white;
-  }
-  
-  .watchlist-table tr {
-    background-color: rgba(255, 255, 255, 0.813);
-  }
-  
-  .watchlist-table tr:hover {
-    background-color: rgba(203, 203, 203, 0.799);
-  }
-  
-  .alert-container {
-    display: flex;
-    align-items: center;
-  }
-  
+    padding: 4px; /* Adjusted padding for smaller screens */
+}
+
   .alert-input {
-    width: 70px; /* Adjusted width */
-    border: 1px solid #121212;
-    padding: 4px;
-    margin-right: 5px;
+      width: 50px; /* Adjusted width for smaller screens */
   }
-  
-  .alert-button {
-    background-color: #121212;
-    color: white;
-    border: none;
-    padding: 5px;
-    cursor: pointer;
-  }
-  
-  .symbol-image {
-    width: 40px;
-    height: auto;
-    display: block;
-    margin: 0 auto;
-  }
-  
+}

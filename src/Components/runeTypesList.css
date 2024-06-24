@@ -65,6 +65,11 @@ thead, tbody tr {
   overflow: hidden;
 }
 
+
+.styled-table tbody tr:nth-of-type(even) {
+  background-color: white;
+}
+
 .spinner-container {
   display: flex;
   justify-content: center;

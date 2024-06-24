@@ -37,24 +37,18 @@ const LoginPage = () => {
     setErrorMessage('');
 
     try {
+      const url = isSignInForm 
+        ? 'https://unidash-full-1.onrender.com/api/v1/auth/signin' 
+        : 'https://unidash-full-1.onrender.com/api/v1/auth/signup';
+      const response = await axios.post(url, formData);
+      console.log(response.data);
+
       if (isSignInForm) {
-        // Sign In
-        const response = await axios.post('http://localhost:5000/api/v1/auth/signin', {
-          email: formData.email,
-          password: formData.password,
-        });
-        // Store token or handle successful login here
-        console.log(response.data);
+        // Handle successful login
+        localStorage.setItem('token', response.data.token);
         navigate('/dashboard');
       } else {
-        // Sign Up
-        const response = await axios.post('http://localhost:5000/api/v1/auth/signup', {
-          username: formData.username,
-          email: formData.email,
-          password: formData.password,
-        });
-        // Handle successful registration here
-        console.log(response.data);
+        // Handle successful registration
         setSignInForm(true);
       }
     } catch (error) {

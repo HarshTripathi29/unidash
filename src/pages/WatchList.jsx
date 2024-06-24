@@ -12,7 +12,7 @@ const Watchlist = () => {
   useEffect(() => {
     const fetchWatchlist = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/v1/watchlist');
+        const response = await axios.get('https://unidash-full-1.onrender.com/api/v1/watchlist');
         setWatchlist(response.data);
       } catch (error) {
         setError(error);
