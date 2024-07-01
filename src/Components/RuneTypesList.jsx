@@ -54,14 +54,14 @@ const RuneTypesList = () => {
   const handleCheckboxChange = (runeType) => async (event) => {
     if (event.target.checked) {
       try {
-        const response = await axios.post('https://unidash-full-1.onrender.com/api/v1/watchlist', runeType);
+        const response = await axios.post('https://unidash-full.onrender.com/api/v1/watchlist', runeType);
         console.log('Post response:', response.data);
       } catch (error) {
         console.error('Error adding to watchlist:', error.response ? error.response.data : error.message);
       }
     } else {
       try {
-        const response = await axios.delete(`https://unidash-full-1.onrender.com/api/v1/watchlist/${runeType.tick}`);
+        const response = await axios.delete(`https://unidash-full.onrender.com/api/v1/watchlist/${runeType.tick}`);
         console.log('Delete response:', response.data);
       } catch (error) {
         console.error('Error removing from watchlist:', error.response ? error.response.data : error.message);

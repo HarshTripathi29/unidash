@@ -38,8 +38,8 @@ const LoginPage = () => {
 
     try {
       const url = isSignInForm 
-        ? 'https://unidash-full-1.onrender.com/api/v1/auth/signin' 
-        : 'https://unidash-full-1.onrender.com/api/v1/auth/signup';
+        ? 'https://unidash-full.onrender.com/api/v1/auth/signin' 
+        : 'https://unidash-full.onrender.com/api/v1/auth/signup';
       const response = await axios.post(url, formData);
       console.log(response.data);
 

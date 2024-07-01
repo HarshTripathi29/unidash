@@ -3,7 +3,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './alertContainer.css';
 
-const AlertContainer = ({ message, type, watchlist }) => {
+const AlertContainer = ({ watchlist }) => {
   const alerts = watchlist?.filter(item => item.alertPrice) || [];
   const notifiedTicks = useRef(new Set());
 
@@ -20,8 +20,8 @@ const AlertContainer = ({ message, type, watchlist }) => {
   }, [alerts]);
 
   return (
-    <div className={`alert-container ${type}`}>
-      <p>{message}</p>
+    <div className="alert-container">
+      <ToastContainer />
       {alerts.length > 0 && (
         <div className="alerts-container">
           <h2>Alerts</h2>
@@ -40,6 +40,12 @@ const AlertContainer = ({ message, type, watchlist }) => {
                 const alertPrice = parseFloat(alert.alertPrice);
                 const matched = currentPrice === alertPrice;
 
+                // Trigger the toast notification for matched alerts
+                if (matched && !notifiedTicks.current.has(alert.tick)) {
+                  toast.success(`Price matched for ${alert.tick} at ${currentPrice}`);
+                  notifiedTicks.current.add(alert.tick);
+                }
+
                 return (
                   <tr key={index}>
                     <td>{alert.tick}</td>
@@ -53,7 +59,6 @@ const AlertContainer = ({ message, type, watchlist }) => {
           </table>
         </div>
       )}
-      <ToastContainer />
     </div>
   );
 };

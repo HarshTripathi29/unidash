@@ -40,8 +40,8 @@ export const fetchLatestPrices = async (watchlist) => {
 };
 
 
-const ORDISCAN_API_URL = 'https://api.ordiscan.com/v1/';
-const ORDISCAN_API_KEY = '903fbf4c-3966-41d6-8643-f94784934f3d'; 
+const ORDISCAN_API_URL = 'https://open-api.unisat.io/v1';
+const ORDISCAN_API_KEY = '0de01e1a5e9c496a1b60eb0ba7c7433f04b2a4c16fd2fb50229f6c1f581241f3'; 
 
 const ordiscanApi = axios.create({
   baseURL: ORDISCAN_API_URL,
@@ -53,7 +53,27 @@ const ordiscanApi = axios.create({
 
 export const fetchOrdiDetails = async () => {
   try {
-    const response = await ordiscanApi.get('brc20/ordi');
+    const response = await ordiscanApi.get('/market/brc20/auction/brc20_types',{ 
+    method: 'POST',
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+       "ticks": [
+            "ordi",
+            "meme",
+            "punk",
+            "pepe",
+            "BRUH",
+            "gold",
+            "BAYC",
+            "<10K",
+            "sats",
+            "sato",
+            "pizza"
+      ]
+    }),
+});
     console.log('Ordi Details API response:', response.data);
     return response.data;
   } catch (error) {

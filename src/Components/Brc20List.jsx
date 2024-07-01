@@ -45,23 +45,32 @@ const Brc20List = () => {
     fetchData();
   }, []);
 
-  const handleCheckboxChange = (brc20) => async (event) => {
+  const handleCheckboxChange = (token) => async (event) => {
     if (event.target.checked) {
       try {
-        const response = await axios.post('https://unidash-full-1.onrender.com/api/v1/watchlist', brc20);
+        const response = await axios.post('https://unidash-full.onrender.com/api/v1/brc20Watchlist', {
+          tick: token.tick,
+          curPrice: token.curPrice,
+          changePrice: token.changePrice,
+          btcVolume: token.btcVolume,
+          amountVolume: token.amountVolume,
+          holders: token.holders,
+          transactions: token.transactions,
+        });
         console.log('Post response:', response.data);
       } catch (error) {
         console.error('Error adding to watchlist:', error.response ? error.response.data : error.message);
       }
     } else {
       try {
-        const response = await axios.delete(`https://unidash-full-1.onrender.com/api/v1/watchlist/${brc20.tick}`);
+        const response = await axios.delete(`https://unidash-full-1.onrender.com/api/v1/brc20Watchlist/${token.tick}`);
         console.log('Delete response:', response.data);
       } catch (error) {
         console.error('Error removing from watchlist:', error.response ? error.response.data : error.message);
       }
     }
   };
+  
 
   if (loading) return <p>Loading BRC20 data...</p>;
   if (error) return <p>Error: {error.message}</p>;
@@ -82,24 +91,22 @@ const Brc20List = () => {
           </tr>
         </thead>
         <tbody>
-          {brc20Data && (brc20Data.map((token, index) => (
-            <tr key={index}>
-              <td>{token.tick}</td>
-              <td>{token.curPrice}</td>  
-              <td>{token.changePrice}</td>   
-              <td>{token.btcVolume}</td>     
-              <td>{token.amountVolume}</td>  
-              <td>{token.holders}</td>
-              <td>{token.transactions}</td>  
-              <td>
-                <input
-                  type="checkbox"
-                  onChange={handleCheckboxChange(token)}
-                />
-              </td>     
-            </tr>
-          )))}
-        </tbody>
+  {brc20Data.map((token, index) => (
+    <tr key={index}>
+      <td>{token.tick}</td>
+      <td>{token.curPrice}</td>
+      <td>{token.changePrice}</td>
+      <td>{token.btcVolume}</td>
+      <td>{token.amountVolume}</td>
+      <td>{token.holders}</td>
+      <td>{token.transactions}</td>
+      <td>
+        <input type="checkbox" onChange={handleCheckboxChange(token)}/>
+      </td>
+    </tr>
+  ))}
+</tbody>
+
       </table>
     </div>
   );
